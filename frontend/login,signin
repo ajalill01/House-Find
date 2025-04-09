@@ -1,1 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Form</title>
+  <link rel="stylesheet" href="Login_Form.css">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
+</head>
+<body>
+    <div class="wrapper left active" id="login">
+        <div class="form login">
+            <form action="/LOGIN">
+                <h1>Log in:</h1>
+                <div class="input-box">
+                    <input type="text" placeholder="Username" required>
+                    
+                </div>
+                <div class="input-box">
+                    <input type="password" placeholder="Password" required>
+                    
+                </div>
+                <div class="forgot">
+                    <a href="#">Forgot your password?</a></p>
+                  </div>
+                <button type="button" class="btn">Login</button>
+                <div class="create">
+                    <a href="#" onclick="showform('register')">create account</a>
+                </div>
+
+            </form>
+            
+        </div>
+        <div class="left-img">
+            <h1></h1>
+        </div>
+
+    </div>
+
+    <div class="wrapper left" id="register">
+        <div class="form login">
+            <form action="SIGNUP">
+                <h1>Sign in:</h1>
+                <div class="input-box">
+                    <input type="text" placeholder="Username" required>
+                    
+                </div>
+                <div class="input-box">
+                    <input type="password" placeholder="Password" required>
+                    
+                </div>
+                <div class="input-box">
+                    <input type="password" placeholder="Comfirm Password" required>
+                    
+                </div>
+                <button type="button" class="btn">Sign in</button>
+                <div class="create">
+                    <a href="#" onclick="showform('login')">already have an account?</a>
+                </div>
+
+            </form>
+        </div>
+        <div class="left-imgg">
+            <h4></h4>
+        </div>
+
+    </div>
+    <script src="script.js"></script>
+</body>

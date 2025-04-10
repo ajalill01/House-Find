@@ -8,7 +8,7 @@ const sendEmail = (req, res) => {
             from: email,
             to: process.env.EMAIL_USER,
             subject: subject,
-            text: `From ${fullName} \n${message}` 
+            text: `From ${fullName}\nWith ${email}\n${message}` 
         };
 
         const transporter = nodemailer.createTransport({

@@ -16,7 +16,7 @@ app.use('/api/mail',mailRoutes)
 const PORT= process.env.PORT||3000;
 
 
-consectDB();
+// consectDB();
 app.listen(PORT,()=>{
     console.log("server is on");
 });

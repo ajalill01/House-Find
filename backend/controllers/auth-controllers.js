@@ -1,6 +1,7 @@
 const User = require('../model/User')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
+const nodemailer = require('nodemailer')
 
 const signUp = async(req,res)=>{
     try{
@@ -112,7 +113,58 @@ const login = async(req,res)=>{
     }
 }
 
+
+
+
+const sendverificationcode=async(req,res)=>{
+    const { email } = req.body;
+    const verificationCode = Math.floor(100000 + Math.random() * 900000);
+  
+    var transporter = nodemailer.createTransport({
+      service: 'gmail',
+      secure:true,
+      debug:true,
+      host: 'smtp.gmail.com',
+      port: 465,
+    
+      
+      auth: {
+        user:process.env.EMAIL_USER,
+        pass:process.env.EMAIL_PASS,
+      },
+      tls: {
+        rejectUnauthorized: true
+      }
+    });
+    
+    var mailOptions = {
+      from:process.env.EMAIL_USER,
+      to: email,
+      subject: 'THIS IS YOUR VERIFICATION CODE',
+      html: `<h1>${verificationCode}</h1>`,
+      text: verificationCode.toString(),
+    };
+    
+    transporter.sendMail(mailOptions, function(error, info){
+      if (error) {
+        console.log(error);
+      } else {
+        console.log('Email sent: ' + info.response);
+        res.status(200).json({
+            success : true,
+            message : 'Verification code sent successfully',
+            verificationCode:verificationCode
+        })
+      }
+    });
+  
+}
+
+
+
+
 module.exports = {
     signUp,
-    login
+    login,
+    sendverificationcode
 }

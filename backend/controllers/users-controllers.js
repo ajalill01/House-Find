@@ -3,95 +3,87 @@ const bcrypt = require('bcrypt')
 
 
 
-const changeName = async(req,res)=>{
-    try{
-        const userId = req.userInfo.userId
+const changeName = async (req, res) => {
+    try {
+        const userId = req.userInfo.userId;
+        const newName = req.body.newName;
 
-        const existingUser = await User.findById(userId)
+        const userWithSameName = await User.findOne({ username: newName });
 
-        if(!existingUser){
-            return res.status(404).json({
-                success : false,
-                message : 'User with this id does not exist'
-            })
-        }
-
-        const newName = req.body.newName
-
-        const userWithSameName = await User.findOne({username:newName})
-
-        if(userWithSameName){
+        if (userWithSameName) {
             return res.status(400).json({
-                success : false,
-                message : 'There is a user with that name'
-            })
+                success: false,
+                message: 'There is a user with that name'
+            });
         }
-        
 
-        existingUser.username = newName
+        const updatedUser = await User.findByIdAndUpdate(
+            userId,
+            { username: newName },
+        );
 
-        await existingUser.save()
+        if (!updatedUser) {
+            return res.status(404).json({
+                success: false,
+                message: 'User with this id does not exist'
+            });
+        }
 
         res.status(202).json({
-            success : true,
-            message : 'User name has been updated',
-            newName : newName
-        })
+            success: true,
+            message: 'User name has been updated',
+            newName: updatedUser.username
+        });
 
-    }
-    catch(e){
+    } catch (e) {
         res.status(500).json({
-            success : false,
-            message:'Error while changing name'
-        })
-        console.log('Error from changeName\n',e)
+            success: false,
+            message: 'Error while changing name'
+        });
+        console.log('Error from changeName\n', e);
     }
-}
+};
 
-const changeEmail = async(req,res)=>{
-    try{
-        const userId = req.userInfo.userId
+const changeEmail = async (req, res) => {
+    try {
+        const userId = req.userInfo.userId;
+        const newEmail = req.body.newEmail;
 
-        const existingUser = await User.findById(userId)
+        const userWithSameEmail = await User.findOne({ email: newEmail });
 
-        if(!existingUser){
-            return res.status(404).json({
-                success : false,
-                message : 'User with this id does not exist'
-            })
-        }
-
-        const newEmail = req.body.newEmail
-
-        const userWithSameEmail = await User.findOne({email:newEmail})
-
-        if(userWithSameEmail){
+        if (userWithSameEmail) {
             return res.status(400).json({
-                success : false,
-                message : 'There is a user with that email'
-            })
+                success: false,
+                message: 'There is a user with that email'
+            });
         }
-        
 
-        existingUser.email = newEmail
+        const updatedUser = await User.findByIdAndUpdate(
+            userId,
+            { email: newEmail },
+        );
 
-        await existingUser.save()
+        if (!updatedUser) {
+            return res.status(404).json({
+                success: false,
+                message: 'User with this id does not exist'
+            });
+        }
 
         res.status(202).json({
-            success : true,
-            message : 'User email has been updated',
-            newEmail : newEmail
-        })
+            success: true,
+            message: 'User email has been updated',
+            newEmail: updatedUser.email
+        });
 
-    }
-    catch(e){
+    } catch (e) {
         res.status(500).json({
-            success : false,
-            message:'Error while changing email'
-        })
-        console.log('Error from changeEmail\n',e)
+            success: false,
+            message: 'Error while changing email'
+        });
+        console.log('Error from changeEmail\n', e);
     }
-}
+};
 
 const changePassword = async(req,res)=>{
     try{

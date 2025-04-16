@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>profile-form</title>
+  <link rel="stylesheet" href="profile.css">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+
+<body>
+    <!--navigation bar section-->
+    <header class="header">
+      <nav class="navbar">
+          <div class="logo">
+              <a href="#">
+                <img src="logo@2x.png" alt="House Find Logo" class="logo-img" />
+              </a>
+            </div>
+          <ul>
+            
+            <a href="#" class="navlinks">Home</a>
+            <a href="#">List a property</a>
+            <a href="#">Contact</a>
+          </ul>
+          <form action="#" class="search">
+              <input type="text" placeholder="search">
+              <button type="submit">
+                  <i class='bx bx-search-alt-2'></i>
+              </button>
+          </form>
+          <div class="sign">
+              <a href="Login-Form.html" class="btn btn-primary" id="sign">Log in</a>
+          </div>
+      </nav>
+      
+      
+      
+  </header>
+    <main>
+      <!--main section-->
+      <div class="over">
+        
+        <div class="container">
+            <div class="mid">
+                <form class="user">
+                    <h1>Profile info</h1>
+                    <div style="height: 100px;"></div>
+                    <div class="pfps">
+                        <img class="pfp" src="blank-pfp.png" alt="pfp">
+                    </div>
+                    <input id="update-pfp" type="file" accept="image/*">
+                    <a onclick="document.getElementById('update-pfp').click()">Edit picture</a>
+                </form>
+            </div>
+        </div>
+        <div class="update-info">
+            <div class="field-group">
+              <label>Username:</label>
+              <div class="input-row">
+                <input type="text" id="editableInput" value="kenzi berrahail" disabled>
+                <a onclick="enableInput()">Change</a>
+              </div>
+            </div>
+        
+            <div class="field-group">
+              <label>Email:</label>
+              <div class="input-row">
+                <input type="email" id="editableInput2" value="kenzi.berr@gmail.com" disabled>
+                <a onclick="enableInput2()">Change</a>
+              </div>
+            </div>
+        
+            <div class="field-group">
+              <label>Password:</label>
+              <div class="input-row">
+                <input type="password" id="editableInput3" value="kenziberr" disabled>
+                <a onclick="enableInput3()">Change</a>
+              </div>
+            </div>
+          </div>
+        <div class="save">
+            <button class="btns btn-primarys" type="button">save</button>
+        </div>
+        <div style="height: 100px;"></div>
+      </div>
+    </main>
+    <div style="height: 100px;"></div>
+    <!--footer section-->
+    <footer class="footer">
+      <div class="footer-top">
+        <div class="footer-section">
+          <h4>support</h4>
+          <p>send email</p>
+          <p>contact</p>
+        </div>
+        <div class="footer-section">
+          <h4>sell or rent</h4>
+          <p>List a property</p>
+        </div>
+        <div class="footer-locale">
+          <p><strong>ENGLISH</strong> ▼</p>
+          <p><strong>$USD</strong></p>
+        </div>
+      </div>
+    
+      <hr />
+    
+      <div class="footer-bottom">
+        <p>copyright 2025 @</p>
+      </div>
+    </footer>
+    
+    <script>
+        function enableInput() {
+          document.getElementById("editableInput").disabled = false;
+          document.getElementById("editableInput").focus(); 
+        }
+        function enableInput2() {
+          document.getElementById("editableInput2").disabled = false;
+          document.getElementById("editableInput2").focus(); 
+        }
+        function enableInput3() {
+          document.getElementById("editableInput3").disabled = false;
+          document.getElementById("editableInput3").focus(); 
+        }
+      </script>
+</body>
+</html>

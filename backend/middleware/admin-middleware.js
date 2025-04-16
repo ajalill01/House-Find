@@ -25,3 +25,16 @@ const isAdmin = async (req,res,next)=>{
 }
 
 module.exports = isAdmin
+const adminMiddleware = (req, res, next) => {
+    const isAdmin = req.query.admin === 'true';
+  
+    if (isAdmin) {
+      console.log('Admin access granted');
+      next();
+    } else {
+      console.log('Admin access denied');
+      res.status(403).json({ message: 'Access denied: Admins only' });
+    }
+  };
+  
+  module.exports = adminMiddleware;

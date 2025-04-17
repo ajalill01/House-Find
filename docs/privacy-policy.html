@@ -39,7 +39,18 @@
 
   <h2>6. Contact</h2>
   <p>If you have any questions, contact us on <a href="#">contact</a>.</p>
+
+  <button onclick="downloadPDF()">Download PDF</button>
+  
 </div>
 
+<script>
+  function downloadPDF() {
+    const link = document.createElement('a');
+    link.href = 'pdfs/GDRP.pdf';
+    link.download = 'GDRP.pdf';
+    link.click();
+  }
+</script>
 </body>
 </html>

@@ -308,6 +308,19 @@ hr {
 .footer-bottom {
     text-align: center;
     font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer-bottom a{
+    all: unset;
+    text-align: center;
+    cursor: pointer;
+}
+
+.footer-bottom a:hover{
+    text-decoration: underline;
 }
 
 /*-------------------end of footer------------------------*/

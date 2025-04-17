@@ -1,4 +1,4 @@
-const User = require('./model/User')
+const User = require('../model/User')
 const jwt = require('jsonwebtoken')
 
 const isAdmin = async (req,res,next)=>{

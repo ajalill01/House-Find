@@ -2,7 +2,9 @@
 
 const express = require('express');
 const router = express.Router();
+const authMiddleware = require('../middleware/auth-middleware')
 const adminMiddleware = require('../middleware/admin-middleware');
+const {getAllUsers} = require('../controllers/stats-controllers')
 
 // Total Listings
 router.get('/total-listings',adminMiddleware, (req, res) => {
@@ -44,4 +46,6 @@ router.get('/new-users', adminMiddleware, (req, res) => {
   });
   
   
+router.get('/users',authMiddleware,adminMiddleware,getAllUsers)
+
 module.exports = router;

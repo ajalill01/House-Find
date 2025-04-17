@@ -4,6 +4,7 @@ const express= require("express");
 const authRoutes = require('./backend/routes/auth-routes');
 const mailRoutes = require('./backend/routes/mail-routes');
 const userRoutes = require('./backend/routes/user-routes.js')
+const adminRoutes = require('./backend/routes/admin-routes')
 const uploadPostRoutes = require('./backend/routes/post-routes.js')
 
 const consectDB=require("./backend/database/db.js");
@@ -16,6 +17,7 @@ app.use(express.json());
 app.use('/api/users',authRoutes);
 app.use('/api/mail',mailRoutes)
 app.use('/api/users',userRoutes)
+app.use('/api/admin',adminRoutes)
 app.use('/api/post',uploadPostRoutes)
 
 

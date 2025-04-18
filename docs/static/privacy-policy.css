@@ -1,0 +1,134 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+:root {
+    --color-white: hsl(252, 30%, 100%);
+    --color-primary: hsl(171, 43%, 48%);
+    --color-secondary: hsl(171, 45%, 72%);
+    --color-light: hsl(173, 31%, 95%);
+    --border-raduis: 2rem;
+    --card-border-raduis: 1rem;
+    --btn-padding: 0.6rem 2rem;
+    --card-padding: 1rem;
+    --search-padding: 0.5rem 1rem;
+    --shadow: 0 0 0.3rem rgba(0, 0, 0, 0.3);
+    --max-width: 90%;
+    --text-color: hsl(0, 0%, 20%);
+    --heading-color: hsl(0, 0%, 10%);
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--color-light);
+    color: var(--text-color);
+    margin: 0;
+    padding: 2rem;
+    line-height: 1.6;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+h1:first-child{
+    color: var(--color-primary);
+
+}
+
+h1, h2 {
+    color: var(--heading-color);
+    margin-bottom: 1rem;
+}
+
+h1 {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+h2 {
+    font-size: 1.5rem;
+}
+
+p, ul, li {
+    font-size: 1rem;
+    margin-bottom: 1em;
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+}
+
+p{
+    padding: 2em;
+}
+
+ul {
+    padding-left: 2em;
+    list-style-type: disc;
+}
+
+.container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    background-color: var(--color-white);
+    border-radius: var(--card-border-raduis);
+    padding: var(--card-padding);
+    box-shadow: var(--shadow);
+}
+
+a {
+    color: var(--color-primary);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+label {
+    font-weight: 500;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+input[type="checkbox"] {
+    margin-right: 0.5rem;
+    transform: scale(1.2);
+}
+
+button {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    border: none;
+    border-radius: var(--border-raduis);
+    padding: var(--btn-padding);
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: var(--color-secondary);
+}
+
+@media screen and (max-width: 48rem) {
+    body {
+        padding: 1rem;
+    }
+
+    h1 {
+        font-size: 1.6rem;
+    }
+
+    h2 {
+        font-size: 1.3rem;
+    }
+
+    .container {
+        padding: 1rem;
+    }
+}

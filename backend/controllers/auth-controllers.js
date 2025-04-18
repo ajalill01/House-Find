@@ -31,11 +31,12 @@ const signUp = async(req,res)=>{
         const token = jwt.sign(
             { 
                 userId : newUser._id,
-                username : newUser.username
+                username : newUser.username,
+                role: newUser.role
             },
             process.env.JWT_SECRET,
             {
-                expiresIn : '1h'
+                expiresIn : '1d'
             }
         )
 
@@ -89,11 +90,12 @@ const login = async(req,res)=>{
         const token = jwt.sign(
             { 
                 userId : existingUser._id,
-                username : existingUser.username
+                username : existingUser.username,
+                role: existingUser.role
             },
             process.env.JWT_SECRET,
             {
-                expiresIn : '1h'
+                expiresIn : '1d'
             }
         )
 

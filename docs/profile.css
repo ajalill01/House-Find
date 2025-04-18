@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
 :root{
     --color-white: hsl(252, 30%, 100%);
-    --color-primary: hsl(171, 43%, 48%);
+    --color-primary: #008080;
     --color-secondary: hsl(171, 45%, 72%);
     --color-light: hsl(173, 31%, 95%);
     --border-raduis: 2rem;
@@ -11,6 +11,14 @@
     --search-padding: 0.5rem 1rem;
     --shadow: 0 0 5px rgba(0, 0, 0, .5);
 }
+@keyframes shake-hard {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-10px) rotate(-5deg); }
+    50% { transform: translateX(10px) rotate(5deg); }
+    75% { transform: translateX(-10px) rotate(-5deg); }
+    100% { transform: translateX(0); }
+}
+
 *{
     margin: 0;
     padding: 0;
@@ -308,6 +316,19 @@ hr {
 .footer-bottom {
     text-align: center;
     font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer-bottom a{
+    all: unset;
+    text-align: center;
+    cursor: pointer;
+}
+
+.footer-bottom a:hover{
+    text-decoration: underline;
 }
 
 /*-------------------end of footer------------------------*/
@@ -339,6 +360,9 @@ hr {
     object-fit: cover;
     border-radius: var(--card-border-raduis);
 }
+.image-grid img:hover{
+    animation: shake-hard 0.4s ease-in-out;
+}
 
 .image-grid img.big {
     grid-column: span 2;
@@ -364,11 +388,11 @@ input, select {
     border: none;
     border-radius: 8px;
     font-size: 14px;
-    background: #cac8c8;
+    background: #E6E6E6;
 }
   
 select {
-    background-color: #cac8c8;
+    background-color: #E6E6E6;
     appearance: none;
     padding-right: 25px;
 }
@@ -444,4 +468,7 @@ select {
     font-size: 0.9rem;
     font-weight: normal;
     color: #666;
+}
+.property-card:hover {
+    transform: translateY(-5px);
 }

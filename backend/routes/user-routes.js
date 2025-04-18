@@ -1,8 +1,6 @@
 const express = require('express')
 const {
-    changeName,
-    changeEmail,
-    changePassword,
+    updateProfile,
     deleteUser,
  } = require('../controllers/users-controllers')
 
@@ -12,9 +10,8 @@ const {
 const router = express.Router()
 
 
-router.put('/changeName',authMiddleware,changeName)
-router.put('/changeEmail',authMiddleware,changeEmail)
-router.put('/changePassword',authMiddleware,changePassword)
+
+router.put('/updateProfile',authMiddleware,updateProfile)
 router.delete('/deleteUser', authMiddleware, deleteUser);
 
 module.exports = router

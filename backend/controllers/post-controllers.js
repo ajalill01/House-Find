@@ -74,6 +74,7 @@ const uploadPost = async(req,res)=>{
         })
     }
 }
+
 const deletePost = async(req,res)=>{
         try{
             const userId = req.userInfo.userId
@@ -117,12 +118,74 @@ const deletePost = async(req,res)=>{
                 message : 'Error while deleting post',
                 error : e.message
                
-            })
-          
+            })} 
 
-} 
 }
+
+const getPosts = async (req, res) => {
+    try {
+        const page = parseInt(req.query.page) || 1;
+        const limits = parseInt(req.query.limits) || 10;
+        const skip = (page - 1) * limits;
+
+
+        const posts = await Post.find().sort({ createdAt: -1 }).skip(skip).limit(limits);
+
+        const total = await Post.countDocuments();
+
+        res.status(200).json({
+            success: true,
+            currentPage: page,
+            totalPages: Math.ceil(total / limits),
+            totalPosts: total,
+            posts: posts
+        });
+
+    } 
+    catch (e) {
+        console.log('Error from getPosts\n', e);
+        res.status(500).json({
+            success: false,
+            message: 'Error while fetching posts',
+            error: e.message
+        });
+    }
+};
+
+const getPost = async (req, res) => {
+    try {
+        const postId = req.params.id;
+
+        const post = await Post.findById(postId);
+
+        if (!post) {
+            return res.status(404).json({
+                success: false,
+                message: 'Post not found'
+            });
+        }
+
+        res.status(200).json({
+            success: true,
+            post: post
+        });
+
+    } catch (e) {
+        console.log('Error from getPostById\n', e);
+        res.status(500).json({
+            success: false,
+            message: 'Error while fetching post',
+            error: e.message
+        });
+    }
+};
+
+
+
 module.exports = {
-    uploadPost
-    ,deletePost
+    uploadPost,
+    deletePost,
+    getPosts,
+    getPost
+
 }

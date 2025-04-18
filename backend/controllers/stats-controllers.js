@@ -2,13 +2,27 @@ const User = require('../model/User');
 
 const getAllUsers = async (req, res) => {
     try {
-
         const page = parseInt(req.query.page) || 1;
         const limits = parseInt(req.query.limits) || 10;
-        const skip = (page-1)*limits;
+        const skip = (page - 1) * limits;
+        const range = req.query.range;
 
-        const users = await User.find({ role: 'user' }).skip(skip).limit(limits).lean();
-        const totalUsers = await User.countDocuments({ role: 'user' });
+
+        const filter = { role: 'user' };
+
+        if (range === 'week') {
+            const lastWeek = new Date();
+            lastWeek.setDate(lastWeek.getDate() - 7);
+            filter.createdAt = { $gte: lastWeek };
+        } else if (range === 'month') {
+            const lastMonth = new Date();
+            lastMonth.setMonth(lastMonth.getMonth() - 1);
+            filter.createdAt = { $gte: lastMonth };
+        }
+
+
+        const users = await User.find(filter).skip(skip).limit(limits);
+        const totalUsers = await User.countDocuments(filter);
 
         res.status(202).json({
             success: true,

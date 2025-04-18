@@ -128,10 +128,36 @@ const changePassword = async(req,res)=>{
         console.log('Error from changePassword\n',e)
     }
 }
+const deleteUser = async (req, res) => {
+    try {
+        const userId = req.userInfo.userId;
 
+        const deletedUser = await User.findByIdAndDelete(userId);
+
+        if (!deletedUser) {
+            return res.status(404).json({
+                success: false,
+                message: 'User with this ID does not exist'
+            });
+        }
+
+        res.status(200).json({
+            success: true,
+            message: 'User has been deleted'
+        });
+
+    } catch (e) {
+        res.status(500).json({
+            success: false,
+            message: 'Error while deleting user'
+        });
+        console.log('Error from deleteUser\n', e);
+    }
+};
 
 module.exports = {
     changeName,
     changeEmail,
-    changePassword
+    changePassword,
+    deleteUser,
 }

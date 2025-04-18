@@ -22,6 +22,10 @@ const postSchema = new mongoose.Schema({
         type : String,
         required : true
     },
+    address : {
+        type : String,
+        required : true
+    },
     googleMapLink : {
         type : String,
         required : true

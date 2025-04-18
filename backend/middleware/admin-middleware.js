@@ -4,6 +4,14 @@ const jwt = require('jsonwebtoken')
 const isAdmin = async (req,res,next)=>{
     try{
 
+        if (!req.userInfo) {
+            console.log("req.userInfo is undefined. Did you forget to use authMiddleware?");
+        }
+
+        if(!req.userInfo.role){
+            console.log("req.userInfo is undefined. Did you forget to role");
+        }
+
         if(req.userInfo.role === "admin"){
             next()
         }
@@ -25,16 +33,3 @@ const isAdmin = async (req,res,next)=>{
 }
 
 module.exports = isAdmin
-const adminMiddleware = (req, res, next) => {
-    const isAdmin = req.query.admin === 'true';
-  
-    if (isAdmin) {
-      console.log('Admin access granted');
-      next();
-    } else {
-      console.log('Admin access denied');
-      res.status(403).json({ message: 'Access denied: Admins only' });
-    }
-  };
-  
-  module.exports = adminMiddleware;

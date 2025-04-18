@@ -1,6 +1,8 @@
 const Post = require('../model/Post')
 const {uploadToCloudinary} = require('../helpers/cloudinary-helpers')
 const cloudinary = require('../config/cloudinary')
+const fs = require('fs');
+
 
 const uploadPost = async(req,res)=>{
     try{

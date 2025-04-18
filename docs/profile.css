@@ -539,3 +539,46 @@ select {
 .property-card:hover {
     transform: translateY(-5px);
 }
+@media (max-width: 18.75rem) { 
+    body {
+      padding: 0.3rem;
+      font-size: 12px;
+      overflow-x: hidden; 
+    }
+    
+    .container {
+      width: 100%;
+      flex-direction: column; 
+      padding: 0.2rem;
+      gap: 0.5rem;
+    }
+    
+    h1, h2, h3 {
+      font-size: 1rem;
+      line-height: 1.1;
+      margin: 0.2rem 0;
+    }
+    
+    img, video {
+      max-width: 95%;
+      height: 0 auto;
+    }
+    
+    button, .btn {
+      padding: 0.3rem 0.6rem;
+      font-size: 0.7rem;
+      white-space: nowrap;
+    }
+    
+    
+    .desktop-only {
+      display: none !important;
+    }
+    .price span{
+        font-size: 0.8rem;
+    }
+  }
+  
+  
+  
+  

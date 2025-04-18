@@ -10,6 +10,7 @@
     --card-padding: 1rem;
     --search-padding: 0.5rem 1rem;
     --shadow: 0 0 5px rgba(0, 0, 0, .5);
+    --low-shadow: 0 0 5px rgba(0, 0, 0, .2);
 }
 @keyframes shake-hard {
     0% { transform: translateX(0); }
@@ -18,6 +19,7 @@
     75% { transform: translateX(-10px) rotate(-5deg); }
     100% { transform: translateX(0); }
 }
+
 
 *{
     margin: 0;
@@ -172,6 +174,18 @@ main .container{
     justify-content: center;
     align-items: center;
 }
+.users h1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-primary);
+}
+.users p{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #666;
+}
 .user a{
     display: flex;
     justify-content: center;
@@ -234,6 +248,64 @@ main .container{
     margin: 50px auto;
     
 }
+.contact-info {
+    width: 42rem;
+    height: 40rem;
+    margin: 50px auto;
+    border-radius: var(--card-border-raduis);
+    box-shadow: var(--low-shadow);
+}
+.contacts-info {
+    padding: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 20px;
+    gap: 10rem;
+}
+.field-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+.formss-group{
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
+}
+.message-feild .msg{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.message-feild .msg label{
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #333;
+}
+.message-feild .row{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.message-feild .row textarea{
+    width: 30rem;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: var(--card-border-raduis);
+    font-family: inherit;
+    font-size: 14px;
+    height: 100px;
+    resize: vertical;
+}
 
 .field-group {
     margin-bottom: 20px;
@@ -276,6 +348,13 @@ main .container{
     justify-content: flex-end;
     padding-right: 8rem;
 }
+.saves{
+    position: absolute;
+    display: flex;
+    justify-content: flex-start;
+    padding-left: 2rem;
+    bottom: 200px;
+}
 /*-------------------end of profile section---------------------*/
 /*-------------------footer------------------------*/
 .footer {
@@ -316,19 +395,6 @@ hr {
 .footer-bottom {
     text-align: center;
     font-weight: bold;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.footer-bottom a{
-    all: unset;
-    text-align: center;
-    cursor: pointer;
-}
-
-.footer-bottom a:hover{
-    text-decoration: underline;
 }
 
 /*-------------------end of footer------------------------*/
@@ -359,6 +425,7 @@ hr {
     height: 100%;
     object-fit: cover;
     border-radius: var(--card-border-raduis);
+    
 }
 .image-grid img:hover{
     animation: shake-hard 0.4s ease-in-out;

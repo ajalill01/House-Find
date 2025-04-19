@@ -122,6 +122,95 @@ const deletePost = async(req,res)=>{
 
 }
 
+const editPost = async(req,res)=>{
+        try{
+            const postId = req.params.id; 
+            const postedBy = req.userInfo.userId;
+            const role = req.userInfo.role;
+          
+             
+            const {title,description,email,phoneNumber,city,address, googleMapLink, type, propertyType,  price,keepPhotos} = req.body;
+            
+            const files = req.files;
+
+            const post = await Post.findById(postId);
+
+            if (!post) {
+                return res.status(404).json({
+                    success: false,
+                    message: "Post not found",
+                });
+            }
+            
+              if (post.postedBy.toString() !== postedBy && role !== 'admin') {
+                return res.status(403).json({
+                success: false,
+                   message: "You are not authorized to edit this post",
+                });
+            }
+
+            const oldestPhotos = post.photos;
+
+            const photosToDelete = oldestPhotos.filter((photo) => !keepPhotos.includes(photo.publicId));
+          
+            await Promise.all(photosToDelete.map((photo) => cloudinary.uploader.destroy(photo.publicId)));
+
+            
+            uploadedImages = [];
+            if (files || files.length > 0) {
+                const filePaths = files.map(file => file.path);
+                 uploadedImages = await uploadToCloudinary(filePaths);
+
+                 await Promise.all(
+                    filePaths.map((filePath) =>
+                      fs.promises.unlink(filePath).catch((error) => {
+                        console.error(`Failed to delete file ${filePath}: `, error);
+                      })
+                    )
+                  );
+    
+              }
+
+
+             
+              post.photos = [...uploadedImages, ...post.photos.filter((photo) =>
+                keepPhotos.includes(photo.publicId)
+            )];
+
+            post.title = title || post.title;
+        post.description = description || post.description;
+        post.email = email || post.email;
+        post.phoneNumber = phoneNumber || post.phoneNumber;
+        post.city = city || post.city;
+        post.address = address || post.address;
+        post.googleMapLink = googleMapLink || post.googleMapLink;
+        post.type = type || post.type;
+        post.propertyType = propertyType || post.propertyType;
+        post.price = price || post.price;
+
+        
+        await post.save();
+
+        res.status(200).json({
+            success: true,
+            message: "Post updated successfully",
+            post,
+        }); 
+
+        }catch(e){
+            console.log('Error from  editPost\n',e)
+            res.status(500).json({
+                success : false,
+                message : 'Error while editing post',
+                error : e.message
+            })
+        }
+
+
+}
+
+
+
 const getPosts = async (req, res) => {
     try {
         const page = parseInt(req.query.page) || 1;
@@ -186,6 +275,7 @@ module.exports = {
     uploadPost,
     deletePost,
     getPosts,
-    getPost
+    getPost,
+    editPost
 
 }
